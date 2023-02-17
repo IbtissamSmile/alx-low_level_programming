@@ -3,7 +3,7 @@
 /**
  * main - Entry point
  *
- * Description: using sizeof to print sizes
+ * Description: using sizeof to print size
  * 
  * Return: Always 0 (Succesful)
  */
