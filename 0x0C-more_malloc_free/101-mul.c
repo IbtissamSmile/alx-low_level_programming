@@ -147,4 +147,3 @@ int main(int argc, char *argv[])
 	_print(a, ln - 1);
 	return (0);
 }
-		
