@@ -4,61 +4,29 @@
  * free_listp2 - the frees a linked list
  * @head: A pointer to the head of a list.
  *
- * Return: no return.
+ * Return: the size of the list
  */
-size_t looped_listint_count(listint_t *head)
+size_t free_listint_safe(listint_t **head)
 {
-	listp_t *temp;
-	listp_t *curr;
+	listint_t *temp_1 = *head, *temp_2;
+	unsigned int iter = 0;
 
-	if (head != NULL)
+	if (temp_1 == 0 || head == 0)
+		return (0);
+	
+	temp_1 = *head;
+	while (temp_1 != 0)
 	{
-		curr = *head;
-		while ((temp = curr) != NULL)
-		{
-			curr = curr->next;
-			free(temp);
-		}
-		*head = NULL;
-	}
-}
+		temp_2 = temp_1;
+		temp_1 = temp_1->next;
+		iter++;
 
-/**
- * free_listint_safe - The frees a linked list.
- * @h: A pointer to the head of a list.
- *
- * Return: size of the list that was freed.
- */
-size_t free_listint_safe(listint_t **h)
-{
-	listint_t *tmp;
-	size_t new_nodes, index;
+		free(temp_2);
 
-	new_nodes = looped_listint_count(*h);
-
-	if (new_nodes == 0)
-	{
-		for (; h != NULL && *h != NULL; new_nodes++)
-		{
-			tmp = (*h)->next;
-			free(*h);
-			*h = tmp;
-		}
+		if (temp_2 <= temp_1)
+			break;
 	}
 
-	else
-	{
-		for (index = 0; index < new_nodes; index++)
-		{
-			tmp = (*h)->next;
-			free(*h);
-			*h = tmp;
-		}
-
-		*h = NULL;
-	}
-
-	h = NULL;
-
-	return (new_nodes);
+	*head = 0;
+	return (iter);
 }
