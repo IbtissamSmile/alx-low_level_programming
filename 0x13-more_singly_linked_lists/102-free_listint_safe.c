@@ -8,42 +8,19 @@
  */
 size_t looped_listint_count(listint_t *head)
 {
-	listint_t *cat, *dog;
-	size_t new_nodes = 1;
+	listp_t *temp;
+	listp_t *curr;
 
-	if (head == NULL || head->next == NULL)
-		return (0);
-
-	cat = head->next;
-	dog = (head->next)->next;
-
-	while (dog)
+	if (head != NULL)
 	{
-		if (cat == dog)
+		curr = *head;
+		while ((temp = curr) != NULL)
 		{
-			cat = head;
-			while (cat != dog)
-			{
-				new_nodes++;
-				cat = cat->next;
-				dog = dog->next;
-			}
-
-			cat = cat->next;
-			while (cat != dog)
-			{
-				new_nodes++;
-				cat = cat->next;
-			}
-
-			return (new_nodes);
+			curr = curr->next;
+			free(temp);
 		}
-
-		cat = cat->next;
-		dog = (dog->next)->next;
+		*head = NULL;
 	}
-
-	return (0);
 }
 
 /**
