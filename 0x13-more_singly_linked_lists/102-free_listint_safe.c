@@ -6,27 +6,35 @@
  *
  * Return: the size of the list
  */
-size_t free_listint_safe(listint_t **head)
+size_t free_listint_safe(listint_t **h)
 {
-	listint_t *temp_1 = *head, *temp_2;
-	unsigned int iter = 0;
+	size_t len = 0;
+	int diff;
+	listint_t *current;
 
-	if (temp_1 == 0 || head == 0)
+	if (!h || !*h)
 		return (0);
-	
-	temp_1 = *head;
-	while (temp_1 != 0)
+
+	while (*h)
 	{
-		temp_2 = temp_1;
-		temp_1 = temp_1->next;
-		iter++;
-
-		free(temp_2);
-
-		if (temp_2 <= temp_1)
+		diff = *h - (*h)->next;
+		if (diff > 0)
+		{
+			current = (*h)->next;
+			free(*h);
+			*h = current;
+			len++;
+		}
+		else
+		{
+			free(*h);
+			*h = NULL;
+			len++;
 			break;
+		}
 	}
 
-	*head = 0;
-	return (iter);
+	*h = NULL;
+
+	return (len);
 }
