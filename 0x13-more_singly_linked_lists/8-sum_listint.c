@@ -4,17 +4,18 @@
  * sum_listint - the Function that sum lists
  * @head: head nodo
  * Return: sum
+ *         or 0 - if the list is empty
  */
 int sum_listint(listint_t *head)
 {
-	int sum;
+	int arr;
 
-	sum = 0;
+	arr = 0;
 
 	while (head)
 	{
-		sum += head->n;
+		arr += head->n;
 		head = head->next;
 	}
-	return (sum)
+	return (arr);
 }
