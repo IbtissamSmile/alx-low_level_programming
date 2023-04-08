@@ -13,7 +13,7 @@ unsigned int binary_to_uint(const char *b)
 	  for (int i = 0; i < len; i++)
 	  {
 		  num = num << 1;
-		  
+
 		  if (b[i] == '1')
 		  {
 			  num = num | 1;
@@ -23,5 +23,5 @@ unsigned int binary_to_uint(const char *b)
 			   return 0;
 		  }
 	  }
-	  return uint;
+	  return num;
 }
