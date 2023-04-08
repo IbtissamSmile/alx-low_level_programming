@@ -3,7 +3,7 @@
 /**
  * flip_bits - Counts the number of bits needed to be
  * @n: The number.
- * @m: The number
+ * @m: The number to flip
  * Return: The number of bits
  */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
@@ -15,5 +15,6 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 		count += (diff & 1);
 		diff >>= 1;
 	}
-	 return (count);
+
+	return (count);
 }
