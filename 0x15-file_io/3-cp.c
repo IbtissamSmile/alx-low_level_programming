@@ -12,8 +12,8 @@
 int main(int ac, char **av)
 {
 	int o1, o2, nwr;
-	int cl_1, cl_2, nrd;
-	char buf_1[1024];
+	int c1, c2, nrd;
+	char buf1[1024];
 
 	if (ac != 3)
 	{
@@ -33,8 +33,8 @@ int main(int ac, char **av)
 		exit(99);
 	}
 
-	nrd = read(o1, buf_1, 1024);
-	nwr = write(o2, buf_1, nrd);
+	nrd = read(o1, buf1, 1024);
+	nwr = write(o2, buf1, nrd);
 
 	if (nwr == -1)
 	{
@@ -42,15 +42,15 @@ int main(int ac, char **av)
 		exit(99);
 	}
 
-	cl_1 = close(o1);
-	if (cl_1 == -1)
+	c1 = close(o1);
+	if (c1 == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close o %d\n", o1);
 		exit(100);
 	}
 
-	cl_2 = close(o2);
-	if (cl_2 == -1)
+	c2 = close(o2);
+	if (c2 == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close o %d\n", o2);
 		exit(100);
